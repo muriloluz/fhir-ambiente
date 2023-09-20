@@ -19,7 +19,7 @@ Exemplo de criação do container a partir da imagem:
 
 `docker run -d -p 80:80 fhir-ambiente`
 
-Observe que houve um direcionando de porta do host para o container (80:80) , então será possível visualizar a página disponível em http://localhost/
+Observe que houve um direcionamento de porta do host para o container (80:80) , então será possível visualizar a página disponível em http://localhost/
 
 
 Para ter acesso a shell do container executando: 
