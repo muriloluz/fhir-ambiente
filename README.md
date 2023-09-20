@@ -1,4 +1,4 @@
-# fhir-ambiente
+# Ambiente para fhir/ig utilizando docker
 
 ## Requisitos mínimos:
 Docker instalado e executando.
