@@ -1,5 +1,23 @@
 FROM ubuntu
+
 RUN apt update
+RUN apt --yes install sudo
+# Set preferences for Microsoft .NET packages installation.
+RUN cd /etc/apt/preferences.d && \
+    touch 99microsoft-dotnet.pref && \
+    echo 'Package: *' >> 99microsoft-dotnet.pref && \
+    echo 'Pin: origin "packages.microsoft.com"' >> 99microsoft-dotnet.pref && \
+    echo 'Pin-Priority: 1001' >> 99microsoft-dotnet.pref
+# Update packages
+RUN apt update
+# Install .NET SDK 6.0
+RUN apt --yes install dotnet-sdk-6.0
+# Add .NET tools directory to PATH
+RUN echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> /root/.bashrc
+# Restarting shell for envariment variable changes
+RUN exec $SHELL
+
+RUN dotnet tool install -g firely.terminal
 RUN apt --yes install nodejs
 RUN apt --yes install default-jre
 RUN apt --yes install npm
@@ -11,8 +29,8 @@ RUN apt --yes install apache2
 RUN gem install jekyll bundler
 RUN npm install -g --silent fsh-sushi@3.6.1
 RUN npm install -g --silent fhirpath@3.10.1
-RUN apt --yes install apache2
 RUN apt --yes install dos2unix
+
 COPY exemplo.sh .
 RUN dos2unix ./exemplo.sh
 EXPOSE 80
