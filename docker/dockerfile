@@ -30,6 +30,7 @@ RUN gem install jekyll bundler
 RUN npm install -g --silent fsh-sushi@3.6.1
 RUN npm install -g --silent fhirpath@3.10.1
 RUN apt --yes install dos2unix
+RUN apt --yes install graphviz
 
 COPY exemplo.sh .
 RUN dos2unix ./exemplo.sh
